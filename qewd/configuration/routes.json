@@ -1,0 +1,14 @@
+  [
+    {
+      "uri": "/api/helloworld",
+      "method": "GET",
+      "handler": "helloworld"
+    },
+    {
+      "else": {
+        "text": "Resource Not Found",
+        "statusCode": 404
+      }
+    }
+  ]
+

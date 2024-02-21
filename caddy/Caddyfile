@@ -1,0 +1,34 @@
+{
+    debug
+}
+
+# fe.dev.localhost {
+#     reverse_proxy http://host.docker.internal:5173
+#     handle_path /socket.io/* {
+#         reverse_proxy http://host.docker.internal:5173
+#         header_up -Origin
+#     }
+# }
+# be.dev.localhost {
+#     route /api/* {
+#         reverse_proxy http://host.docker.internal:8080
+#     }
+
+#     route /app/* {
+#         reverse_proxy http://host.docker.internal:8080
+#     }
+
+#     route /vue* {
+#         reverse_proxy http://host.docker.internal:5173
+#         handle_path /socket.io/* {
+#             reverse_proxy http://host.docker.internal:5173
+#         }
+#     }
+
+#     route /qewd/* {
+#         uri strip_prefix /qewd
+#         reverse_proxy http://host.docker.internal:8080
+#         header Access-Control-Allow-Origin *
+#     }
+# }
+

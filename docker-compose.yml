@@ -1,0 +1,32 @@
+version: "3"
+networks:
+  web-network:
+services:
+
+  # caddy:
+  #   image: caddy:latest
+  #   restart: always
+  #   volumes:
+  #     - ./caddy/data:/data
+  #     - ./caddy/config:/config
+  #     - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+  #     - ./caddy/logs:/logs
+  #     - ./qewd:/opt/qewd/mapped
+
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   networks:
+  #     - web-network
+  #   # this bit allows caddy on docker to see the listener on the external (to docker) port 8080 (which listens locally on my laptop)
+  #   extra_hosts:
+  #     host.docker.internal: host-gateway
+
+  qewdup:
+    image: rtweed/qewd-server-arm64
+    container_name: qewdup-CLQD
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./qewd:/opt/qewd/mapped
+

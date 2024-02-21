@@ -1,0 +1,14 @@
+{
+    "qewd_up": true,
+    "jwt": {
+        "secret": "bc417a22-6baf-4ac0-97ea-d096fdfdd5c5"
+    },
+    "cors": true,
+    "qewd": {
+        "webSockets": {
+            "io_paths": [
+                "/qewd"
+            ]
+        }
+    }
+}
