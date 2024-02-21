@@ -5,14 +5,20 @@ import { ref, onMounted, getCurrentInstance } from 'vue'
 import io from 'socket.io-client'
 
 const qewdReady = ref(false);
-const { proxy } = getCurrentInstance();
+// const  {proxy} = getCurrentInstance();
+const  currentInstance = getCurrentInstance();
+
+const glb = currentInstance.appContext.config.globalProperties;
+
 
 onMounted(() => {
 
-  console.log(proxy.$qewd);
-  proxy.$qewd.log = true;
+  console.log(glb);
+  console.log(glb.$qewd.start);
+  console.log(glb.$qewd.on);
+  glb.$qewd.log = true;
   // Event handler when QEWD's connection is registered/ready
-  proxy.$qewd.on('ewd-registered', function() {
+  glb.$qewd.on('ewd-registered', function() {
     console.log('ewd-registered');
     // Your QEWD environment is ready, set the qewdReady data property to true
     qewdReady.value = true;
@@ -20,10 +26,11 @@ onMounted(() => {
   });
   // Start QEWD-Up/QEWD.js client
   // - standard start, no proxies, disable Caddy
-  proxy.$qewd.start({
+  glb.$qewd.start({
     application: 'helloworld',
     io_transports: [ 'websocket' ],
     log: true,
+    io
   });
 
 
