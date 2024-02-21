@@ -4,48 +4,32 @@
   <pre> {{ qewdMessage }}</pre>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  data() {
-    return {
-      // add a reactive property to hold a message coming back from QEWD-Up/QEWD.js
-      qewdMessage: ''
-    }
-  },
-  methods: {
-    async sendMessage() {
-      console.log('send message');
-      // preserve Vue.js's this for use in QEWD's reply
-      let self = this
-      // add a debugger statement if you want to debug your Vue app
-      /* eslint-disable no-debugger, no-console */
-      // send a test 'helloworld' message to QEWD-Up/QEWD.js
+<script setup>
+import { ref, onMounted, getCurrentInstance } from 'vue';
 
-      try {
-        debugger;
-        let response = await this.$qewd.reply({
-          type: 'helloworld'
-        });
+const qewdMessage = ref('');
+const { proxy } = getCurrentInstance();
 
-      } catch(e) {
-        console.log('err');
-        throw e
-      }
+const sendMessage = async () => {
+  console.log('send message');
+  // get $qewd from the proxy
+  const $qewd = proxy.$qewd;
+  console.log($qewd);
 
-      console.log('oh');
+  try {
+    debugger;
+    let response = await $qewd.reply({
+      type: 'helloworld'
+    });
 
-      console.log('response', response);
-      // .then(response => {
-      //   // log QEWD's response on the console
-      //   console.log(response)
-      //   // show an error message in the app
-      //   self.qewdMessage = response.message.error || ''
-      // }) 
-    }
+    console.log('oh');
+    console.log('response', response);
+
+    // set the qewdMessage data property with the response
+    qewdMessage.value = response.message.error || '';
+  } catch (e) {
+    console.log('err');
+    throw e;
   }
 }
 </script>

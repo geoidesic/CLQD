@@ -8,6 +8,8 @@ const qewdReady = ref(false);
 const { proxy } = getCurrentInstance();
 
 onMounted(() => {
+
+  console.log(proxy.$qewd);
   proxy.$qewd.log = true;
   // Event handler when QEWD's connection is registered/ready
   proxy.$qewd.on('ewd-registered', function() {
