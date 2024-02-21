@@ -26,7 +26,7 @@ onMounted(() => {
 
 
   //- standard start, for caddy's subdomains, enable caddy
-  proxy.$qewd.start({
+  // proxy.$qewd.start({
   //   application: 'helloworld',
   //   // use a url to allow correct startup of WebSocket using a namespace /qewd
   //   // you *need* to pass a url here too to make the Websocket transport=websocket mode work 
